@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "Slide2PDF",
+  "version": "1.0.0",
+  "description": "GoogleスライドをPDFとしてダウンロードする拡張機能です。",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "downloads"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://docs.google.com/presentation/*"],
+      "all_frames": true,
+      "js": [
+        "lib/html2canvas.min.js",
+        "lib/html2pdf.bundle.min.js",
+        "lib/jspdf.umd.min.js",
+        "js/download.js"
+      ]
+    }
+  ],
+  "icons": {
+    "16": "images/icon.png",
+    "48": "images/icon.png",
+    "128": "images/icon.png"
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "lib/html2canvas.min.js",
+        "lib/html2pdf.bundle.min.js",
+        "lib/jspdf.umd.min.js"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; style-src 'self' 'unsafe-inline';"
+  }
+}
